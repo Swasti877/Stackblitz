@@ -1,0 +1,52 @@
+<div class="h-screen w-screen flex justify-center items-center">
+
+    <form (ngSubmit)="handleSubmit()" [formGroup]="loginForm" class="w-1/2">
+
+        Username: admin@test.com
+        passsword: admin
+
+        <div class="mt-2">
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="hasError('email', 'required')">Email is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('email', 'email')">Please enter a valid email address</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mt-2">
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Password</mat-label>
+                <input autocomplete="on" type="password" matInput formControlName="password" placeholder="Password">
+                <mat-error *ngIf="hasError('password', 'required')">Password is <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('password', 'minlength')">Password contain have at least <strong>{{
+                        passwordLength.min }} character</strong></mat-error>
+                <mat-error *ngIf="hasError('password', 'maxlength')">Password contain have at most <strong>{{
+                        passwordLength.max }} character</strong></mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mt-2">
+            <mat-form-field appearance="outline" class="w-full">
+                <mat-label>Confirm Password</mat-label>
+                <input autocomplete="on" type="password" matInput formControlName="confirmPassword" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="hasError('confirmPassword', 'required')">Password is
+                    <strong>required</strong></mat-error>
+                <mat-error *ngIf="hasError('confirmPassword', 'twoStringSame')">Password must be
+                    <strong>same</strong></mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mt-2">
+            <mat-checkbox formControlName="concernCheckbox">Had read and, I accept the policy</mat-checkbox>
+            <mat-error *ngIf="hasError('concernCheckbox', 'required')">Accept the policy</mat-error>
+        </div>
+
+        <div class="w-full mt-2">
+            <button [disabled]="loginForm.invalid" class="w-full" mat-flat-button color="primary">Login</button>
+        </div>
+
+    </form>
+
+
+</div>
